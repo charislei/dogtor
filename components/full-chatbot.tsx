@@ -393,14 +393,14 @@ export default function FullChatbot() {
                       <Button
                         variant="outline"
                         className="w-full h-auto py-5 px-6 text-left justify-start border-purple-200 text-purple-700 hover:bg-purple-50 text-base"
-                        onClick={() => handleQuickPrompt("What vaccines does my puppy need?")}
+                        onClick={() => handleQuickPrompt("My dog is vomiting")}
                       >
                         My dog is vomiting
                       </Button>
                       <Button
                         variant="outline"
                         className="w-full h-auto py-5 px-6 text-left justify-start border-purple-200 text-purple-700 hover:bg-purple-50 text-base"
-                        onClick={() => handleQuickPrompt("My dog is scratching a lot, what could it be?")}
+                        onClick={() => handleQuickPrompt("My dog is lethargic")}
                       >
                         My dog is lethargic
                       </Button>
