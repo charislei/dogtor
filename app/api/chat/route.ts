@@ -3,18 +3,12 @@ import type { NextRequest } from "next/server"
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30
 
+// Helper function to check if the message is irrelevant (non-dog related or lacks greetings)
 function isIrrelevant(question: string): boolean {
-  const irrelevantAnimals = [
-    "cat", "rabbit", "bird", "hamster", "fish", "turtle", "parrot", "guinea pig",
-    "ferret", "lizard", "snake", "mouse", "rat", "chinchilla", "horse", "goat",
-    "sheep", "pig", "cow", "duck", "chicken", "frog", "gecko", "hedgehog", "alpaca"
-  ]
-
-
-  return (
-    irrelevantAnimals.some((animal) => question.toLowerCase().includes(animal)) &&
-    !greetings.some((greet) => question.toLowerCase().includes(greet)) &&
-    !question.toLowerCase().includes("dog")
+  const greetings = ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening"]
+  return !(
+    question.toLowerCase().includes("dog") ||
+    greetings.some((greet) => question.toLowerCase().includes(greet))
   )
 }
 
