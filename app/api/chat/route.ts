@@ -97,7 +97,6 @@ export async function POST(req: NextRequest) {
     }
 
     // Check for greetings or polite responses
-    const greetings = ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"]
     const politeResponses = ["thank you", "thanks", "alright", "okay"]
 
     if (greetings.some((word) => userMessage.toLowerCase().includes(word))) {
