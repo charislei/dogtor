@@ -10,6 +10,7 @@ function isIrrelevant(question: string): boolean {
     "sheep", "pig", "cow", "duck", "chicken", "frog", "gecko", "hedgehog", "alpaca"
   ]
 
+
   return (
     irrelevantAnimals.some((animal) => question.toLowerCase().includes(animal)) &&
     !greetings.some((greet) => question.toLowerCase().includes(greet)) &&
@@ -72,6 +73,8 @@ export async function POST(req: NextRequest) {
 
     // Check for greetings or polite responses
     const politeResponses = ["thank you", "thanks", "alright", "okay"];
+    const greetings = ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening"];
+
 
     if (greetings.some((word) => userMessage.toLowerCase().includes(word))) {
       return new Response(
