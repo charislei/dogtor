@@ -3,52 +3,21 @@ import type { NextRequest } from "next/server"
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30
 
-// Helper function to check if the message is about non-dog animals
 function isIrrelevant(question: string): boolean {
   const irrelevantAnimals = [
-    "cat",
-    "rabbit",
-    "bird",
-    "hamster",
-    "fish",
-    "turtle",
-    "parrot",
-    "guinea pig",
-    "ferret",
-    "lizard",
-    "snake",
-    "mouse",
-    "rat",
-    "chinchilla",
-    "horse",
-    "goat",
-    "sheep",
-    "pig",
-    "cow",
-    "duck",
-    "chicken",
-    "frog",
-    "gecko",
-    "hedgehog",
-    "alpaca",
+    "cat", "rabbit", "bird", "hamster", "fish", "turtle", "parrot", "guinea pig",
+    "ferret", "lizard", "snake", "mouse", "rat", "chinchilla", "horse", "goat",
+    "sheep", "pig", "cow", "duck", "chicken", "frog", "gecko", "hedgehog", "alpaca"
   ]
-  return irrelevantAnimals.some((animal) => question.toLowerCase().includes(animal))
-}
 
-// Helper function to check if the message is irrelevant (non-dog related or lacks greetings)
-function isIrrelevant(question: string): boolean {
   const greetings = [
-    "hi",
-    "hello",
-    "hey",
-    "greetings",
-    "good morning",
-    "good afternoon",
-    "good evening"
+    "hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening"
   ]
-  return !(
-    question.toLowerCase().includes("dog") ||
-    greetings.some((greet) => question.toLowerCase().includes(greet))
+
+  return (
+    irrelevantAnimals.some((animal) => question.toLowerCase().includes(animal)) &&
+    !greetings.some((greet) => question.toLowerCase().includes(greet)) &&
+    !question.toLowerCase().includes("dog")
   )
 }
 
@@ -106,7 +75,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Check for greetings or polite responses
-    const politeResponses = ["thank you", "thanks", "alright", "okay"]
+    const politeResponses = ["thank you", "thanks", "alright", "okay"];
+    const greetings = ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening"];
+
 
     if (greetings.some((word) => userMessage.toLowerCase().includes(word))) {
       return new Response(
