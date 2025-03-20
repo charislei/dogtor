@@ -37,12 +37,21 @@ function isIrrelevant(question: string): boolean {
 
 // Helper function to check if the message is irrelevant (non-dog related or lacks greetings)
 function isIrrelevant(question: string): boolean {
-  const greetings = ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening"]
+  const greetings = [
+    "hi",
+    "hello",
+    "hey",
+    "greetings",
+    "good morning",
+    "good afternoon",
+    "good evening"
+  ]
   return !(
     question.toLowerCase().includes("dog") ||
     greetings.some((greet) => question.toLowerCase().includes(greet))
   )
 }
+
 
 // Fallback response generator
 function generateFallbackResponse(question: string): string {
